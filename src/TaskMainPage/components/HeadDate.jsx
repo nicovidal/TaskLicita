@@ -21,9 +21,9 @@ export const HeadDate = () => {
 
   return (
     <>
-     <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+     <div style={{ display: "flex", alignItems: "center", justifyContent: "center" ,marginTop:"20px"}}>
          <h1 className="me-4">Cosas por hacer</h1>
-         <h3 style={{ marginLeft: "15px" }}>Hoy: {todayDate}</h3>
+         <h3 style={{ marginLeft: "17rem" }}>Hoy: {todayDate}</h3>
       </div>
     </>
   )
