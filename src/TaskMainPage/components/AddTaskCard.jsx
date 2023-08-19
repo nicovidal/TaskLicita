@@ -6,10 +6,11 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 export const AddTaskCard = () => {
   return (
     <div className='container'>
-        <button type="button" class="btn btn-light" >
+  
+        <button type="button" className="full-button" >
           <FontAwesomeIcon icon={faPlus} size='2xl' className='plus'/>
         </button>
-  
+   
     </div>
   );
 };

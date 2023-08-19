@@ -13,7 +13,7 @@ export const TaskCard = () => {
 
   return (
     <>
-      <div className='container'>
+      <div className='container '>
         <div>
           <form>
             <h3>Tarea pendiente</h3>
