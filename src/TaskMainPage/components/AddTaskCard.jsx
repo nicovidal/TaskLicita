@@ -7,32 +7,25 @@ import { TaskModal } from './TaskModal';
 
 export const AddTaskCard = () => {
 
-  const{openModal}=useModal();
+  const { openModal } = useModal();
 
-
-  const onDoubleClick=(event)=>{
-    console.log('abriendo modal')
+  const onClick = () => {
+    console.log('Abriendo modal');
     openModal();
   }
 
-  const onSelect = (event) => {
-    /* console.log({ click: event }) */
-    setActiveEvent(event);
-  }
-
-
   return (
     <>
-    <div className='container'>
-  
-        <button type="button" className="full-button"
-        onDoubleClick={onDoubleClick}
-        onSelectEvent={onSelect}>
+      <div className='container'>
+        <button
+          type="button"
+          className="full-button"
+          onClick={onClick}
+        >
           <FontAwesomeIcon icon={faPlus} size='2xl' className='plus'/>
         </button>
-   
-    </div>
-    <TaskModal/>
+      </div>
+      <TaskModal/>
     </>
   );
 };

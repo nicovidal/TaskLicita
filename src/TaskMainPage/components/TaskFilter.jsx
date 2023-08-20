@@ -7,7 +7,7 @@ export const TaskFilter = () => {
     <>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center" ,marginTop:"20px"}}>
         <button>Liberar Seleccionadas</button>
-        <button type="button" className="btn btn-light" hover style={{ marginLeft: "31rem"}}>
+        <button type="button" className="btn btn-light"  style={{ marginLeft: "31rem"}}>
           <FontAwesomeIcon icon={faFilter} /> Ordenar
         </button>
       </div>

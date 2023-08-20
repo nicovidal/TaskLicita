@@ -63,7 +63,7 @@ export const TaskModal = () => {
     closeModal();
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     setFormSubmitted(true);
 
@@ -78,6 +78,13 @@ export const TaskModal = () => {
     }
 
     if (formValues.description.length <= 0) return;
+    console.log(formValues)
+
+ /*    await startSavingEvent(formValues); */
+    closeModal();
+    setFormSubmitted(false)
+
+
   };
 
   return (
