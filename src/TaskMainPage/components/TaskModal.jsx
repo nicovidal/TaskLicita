@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Modal from "react-modal";
-import DatePicker,{ registerLocale }from "react-datepicker";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.css";
+import { differenceInSeconds } from "date-fns";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import es from 'date-fns/locale/es';
+import es from "date-fns/locale/es";
 
-registerLocale('es',es)
+registerLocale("es", es);
 
 const customStyles = {
   content: {
@@ -21,30 +24,55 @@ Modal.setAppElement("#root");
 
 export const TaskModal = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const [formValues, setFormValues] = useState({
-    description: "hola",
+    description: "",
     startDate: new Date(),
-    endDate: ""
+    endDate: "",
   });
 
-  const onInputChanged=({target})=>{
-    setFormValues({
-      ...formValues,
-      [target.name]:target.value
-    })
-  }
+  const descriptionClass = useMemo(() => {
+    if (!formSubmitted) return;
 
-  const onDateChanged=(event,changing)=>{
+    return formValues.description.length > 0 ? "" : "is-invalid";
+
+  }, [formValues.description, formSubmitted]);
+
+  const onInputChanged = ({ target }) => {
     setFormValues({
       ...formValues,
-      [changing]:event
-    })
-  }
+      [target.name]: target.value,
+    });
+  };
+
+  const onDateChanged = (event, changing) => {
+    setFormValues({
+      ...formValues,
+      [changing]: event,
+    });
+  };
 
   const onCloseModal = () => {
     console.log("Cerrando modal");
     setIsOpen(false);
+  };
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    setFormSubmitted(true);
+
+    const difference = differenceInSeconds(
+      formValues.endDate,
+      formValues.startDate
+    );
+
+    if (isNaN(difference) || difference <= 0) {
+      Swal.fire("Fechas incorrectas", "Revisa tus fechas", "error");
+      return;
+    }
+
+    if (formValues.description.length <= 0) return;
   };
 
   return (
@@ -58,12 +86,12 @@ export const TaskModal = () => {
     >
       <h1> Nueva Tarea </h1>
       <hr />
-      <form className="container2">
+      <form className="container2" onSubmit={onSubmit}>
         <div className="form-group mb-2">
           <label>Descripcion</label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${descriptionClass}`}
             placeholder="Descripcion de la tarea"
             name="description"
             autoComplete="off"
@@ -77,24 +105,23 @@ export const TaskModal = () => {
         <div className="form-group mb-2">
           <label>Fecha inicio</label>
           <DatePicker
-              selected={formValues.startDate}
-              onChange={(event)=>onDateChanged(event,'startDate')}
-              className="form-control"
-              locale='es'
-              dateFormat="P"
-              
+            selected={formValues.startDate}
+            onChange={(event) => onDateChanged(event, "startDate")}
+            className="form-control"
+            locale="es"
+            dateFormat="P"
           />
         </div>
 
         <div className="form-group mb-2">
           <label>Fecha fin</label>
           <DatePicker
-              minDate={formValues.startDate}
-              selected={formValues.endDate}
-              onChange={(event)=>onDateChanged(event,'endDate')}
-              className="form-control"
-              locale='es'
-              dateFormat="P"
+            minDate={formValues.startDate}
+            selected={formValues.endDate}
+            onChange={(event) => onDateChanged(event, "endDate")}
+            className="form-control"
+            locale="es"
+            dateFormat="P"
           />
         </div>
 
