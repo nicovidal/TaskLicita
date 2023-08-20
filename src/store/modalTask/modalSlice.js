@@ -9,7 +9,7 @@ export const modalSlice= createSlice({
         onOpenModal:(state)=>{
             state.isModalOpen=true;
         },
-        onCloseSModal:(state)=>{
+        onCloseModal:(state)=>{
             state.isModalOpen=false;
         },
 
@@ -18,4 +18,4 @@ export const modalSlice= createSlice({
 
 
 
-export const { onOpenModal, onCloseSModal} =modalSlice.actions;
+export const { onOpenModal, onCloseModal} =modalSlice.actions;
