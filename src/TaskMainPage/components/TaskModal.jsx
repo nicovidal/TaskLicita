@@ -6,6 +6,7 @@ import { differenceInSeconds } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from "date-fns/locale/es";
+import { useModal } from "../../hooks/useModal";
 
 registerLocale("es", es);
 
@@ -23,7 +24,11 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 export const TaskModal = () => {
-  const [isOpen, setIsOpen] = useState(true);
+
+  const {isModalOpen,closeModal} =useModal();
+  
+
+
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const [formValues, setFormValues] = useState({
@@ -55,7 +60,7 @@ export const TaskModal = () => {
 
   const onCloseModal = () => {
     console.log("Cerrando modal");
-    setIsOpen(false);
+    closeModal();
   };
 
   const onSubmit = (event) => {
@@ -77,7 +82,7 @@ export const TaskModal = () => {
 
   return (
     <Modal
-      isOpen={isOpen}
+      isOpen={isModalOpen}
       onRequestClose={onCloseModal}
       style={customStyles}
       className="modal"

@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux"
-import { onCloseModal, onOpenModal } from "../store";
+import { onCloseModal , onOpenModal } from "../store/modalTask/modalSlice";
 
-export const useUiStore=()=>{
+export const useModal=()=>{
 
     const dispatch=useDispatch();
 
-    const {isModalOpen}=useSelector(state=>state.ui);
+    const {isModalOpen}=useSelector(state=>state.modal);
 
     const openModal=()=>{
         dispatch(onOpenModal());
