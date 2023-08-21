@@ -22,3 +22,21 @@
   align-items: center;
   justify-content: center;
 }
+
+.descriptionText{
+  margin-top: 7px;
+  margin-left: 2rem;
+
+}
+.bottom-icons-container {
+  display: flex;
+  align-items: center;
+
+}
+
+.calendar-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  margin-left: 31rem;
+}

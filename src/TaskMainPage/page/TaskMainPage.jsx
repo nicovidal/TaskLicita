@@ -13,16 +13,16 @@ export const TaskMainPage = () => {
     startLoadingTasks();
   }, []);
 
-  const convertedTasks = convertTasksToDateTasks(tasks);
+
 
   return (
     <>
       <HeadDate />
       <TaskFilter />
 
-      {convertedTasks.length > 0 && (
+      {tasks.length > 0 && (
         <div >
-          {convertedTasks.map(task => (
+          {tasks.map(task => (
             <TaskCard key={task.id} task={task} />
           ))}
         </div>

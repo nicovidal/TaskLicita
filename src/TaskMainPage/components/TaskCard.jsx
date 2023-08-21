@@ -1,33 +1,39 @@
 import React from 'react';
 import '../styles/AddTask.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
 export const TaskCard = ({ task }) => {
   const handleDateChange = (event) => {
     // Manejar el cambio de fecha aquí
   };
 
+  const formattedEndDate = new Date(task.endDate).toISOString().split('T')[0];
+
   return (
     <div className='container'>
       <div key={task.id}>
         <form>
-          <h3>{task.description}</h3>
+          <h3 className='descriptionText'>{task.description}</h3>
           <div className='checkbox-box'>
             <input type='checkbox' id='checkbox' />
             <label htmlFor='checkbox'></label>
           </div>
-          <input
-            type='date'
-            id='date'
-            name='date'
-            value={task.endDate}
-            onChange={handleDateChange}
-          />
-          <FontAwesomeIcon icon={faCircleCheck} size='2xl' />
+          <div className='bottom-icons-container'>
+            <div className='calendar-icon ' >
+              <input
+                type='date'
+                id='date'
+                name='date'
+                value={formattedEndDate}
+                onChange={handleDateChange}
+              />
+              <FontAwesomeIcon icon={faCalendarDays} size='2x' />
+            </div>
+            <FontAwesomeIcon icon={faCircleCheck} size='2x' />
+          </div>
         </form>
       </div>
     </div>
   );
 };
-
