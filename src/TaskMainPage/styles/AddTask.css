@@ -40,3 +40,28 @@
   margin-right: 20px;
   margin-left: 31rem;
 }
+
+/* Estado: A realizarse */
+.realizarse {
+  background-color: #4caf50; /* Color verde */
+}
+.realizarse .descriptionText {
+  color: white; /* Color de texto blanco */
+}
+
+
+/* Estado: A punto de vencer */
+.aPuntoDeVencer {
+  background-color: #ffc107; /* Color amarillo */
+}
+.aPuntoDeVencer .descriptionText {
+  color: #333; /* Color de texto oscuro */
+}
+
+/* Estado: Ya vencidas */
+.yaVencidas {
+  background-color: #ff6b6b; /* Color rojo */
+}
+.yaVencidas .descriptionText {
+  color: white; /* Color de texto blanco */
+}

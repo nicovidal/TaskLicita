@@ -4,6 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
 export const TaskCard = ({ task }) => {
+  
+  const currentDate = new Date();
+  const endDate = new Date(task.endDate);
+
+  let cardStateClass = '';
+  if (endDate < currentDate) {
+    cardStateClass = 'yaVencidas';
+  } else if (endDate.getTime() - currentDate.getTime() <= 86400000) { // Menos de 1 día
+    cardStateClass = 'aPuntoDeVencer';
+  } else if (endDate.toISOString().split('T')[0] === currentDate.toISOString().split('T')[0]) {
+    cardStateClass = 'realizarse';
+  }
+
   const handleDateChange = (event) => {
     // Manejar el cambio de fecha aquí
   };
@@ -11,7 +24,7 @@ export const TaskCard = ({ task }) => {
   const formattedEndDate = new Date(task.endDate).toISOString().split('T')[0];
 
   return (
-    <div className='container'>
+    <div className={`container ${cardStateClass}`}>
       <div key={task.id}>
         <form>
           <h3 className='descriptionText'>{task.description}</h3>
@@ -20,7 +33,7 @@ export const TaskCard = ({ task }) => {
             <label htmlFor='checkbox'></label>
           </div>
           <div className='bottom-icons-container'>
-            <div className='calendar-icon ' >
+            <div className='calendar-icon'>
               <input
                 type='date'
                 id='date'
@@ -37,3 +50,4 @@ export const TaskCard = ({ task }) => {
     </div>
   );
 };
+
