@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/AddTask.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
+import { TaskFilter } from './TaskFilter';
 
 export const TaskCard = ({ task, onSelectEvent , onDoubleClickEvent}) => {
   
@@ -37,10 +38,14 @@ export const TaskCard = ({ task, onSelectEvent , onDoubleClickEvent}) => {
   });
 
   return (
+    
+    <>
+
     <div className={`container ${cardStateClass}`} onClick={() => onSelectEvent(task)} onDoubleClick={()=>onDoubleClickEvent(task)}>
       <div key={task.id}>
         <form>
           <h3 className='descriptionText'>{task.description}</h3>
+          <h3 className='descriptionText'>{cardStateClass}</h3>
           <div className='checkbox-box'>
             <input type='checkbox' id='checkbox' />
             <label htmlFor='checkbox'></label>
@@ -61,5 +66,6 @@ export const TaskCard = ({ task, onSelectEvent , onDoubleClickEvent}) => {
         </form>
       </div>
     </div>
+    </>
   );
 };
