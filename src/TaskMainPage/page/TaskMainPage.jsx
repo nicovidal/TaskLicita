@@ -26,6 +26,14 @@ export const TaskMainPage = () => {
     startLoadingTasks();
   }, []);
 
+  // Ordenar tareas por fecha de inicio (de mayor a menor)
+const sortByStartDate = (tasks) => {
+  const sortedTasks = [...tasks]; // Hacer una copia para no modificar el original
+  sortedTasks.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+  return sortedTasks;
+};
+
+
   // Aplicar el filtro a las tareas
   const filteredTasks = tasks.filter((task) => {
     if (selectedFilter === "realizarse") {
@@ -38,13 +46,15 @@ export const TaskMainPage = () => {
     return true;
   });
 
+  const sortedTasks = sortByStartDate(filteredTasks);
+
   return (
     <>
       <HeadDate />
-      <TaskFilter setSelectedFilter={setSelectedFilter} /> {/* Pasar la función de setSelectedFilter */}
-      {filteredTasks.length > 0 && (
+      <TaskFilter setSelectedFilter={setSelectedFilter} />
+      {sortedTasks.length > 0 && (
         <div>
-          {filteredTasks.map((task) => (
+          {sortedTasks.map((task) => (
             <TaskCard
               key={task.id}
               task={task}
