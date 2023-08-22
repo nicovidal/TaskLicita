@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Modal from "react-modal";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.css";
-import { differenceInSeconds } from "date-fns";
+import { differenceInSeconds,parseISO } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from "date-fns/locale/es";
@@ -27,8 +27,10 @@ Modal.setAppElement("#root");
 export const TaskModal = () => {
 
   const {isModalOpen,closeModal} =useModal();
+ 
+
   
-  const {startSavingTask}=useTaskStore()
+  const {activeTask,startSavingTask}=useTaskStore()
 
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -44,6 +46,20 @@ export const TaskModal = () => {
     return formValues.description.length > 0 ? "" : "is-invalid";
 
   }, [formValues.description, formSubmitted]);
+
+  useEffect(() => {
+    if (activeTask !== null) {
+      // Use parseISO to convert date strings to valid date objects
+      setFormValues({
+        ...activeTask,
+        startDate: activeTask.startDate ? parseISO(activeTask.startDate) : new Date(),
+        endDate: activeTask.endDate ? parseISO(activeTask.endDate) : new Date(),
+      });
+    }
+  }, [activeTask]);
+
+
+
 
   const onInputChanged = ({ target }) => {
     setFormValues({
