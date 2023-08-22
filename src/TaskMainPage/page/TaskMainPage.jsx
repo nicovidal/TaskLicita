@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { HeadDate } from "../components/headDate";
 import { TaskCard } from "../components/TaskCard";
 import { TaskFilter } from "../components/TaskFilter";
@@ -12,6 +12,8 @@ export const TaskMainPage = () => {
   const { tasks, startLoadingTasks, setActiveTask } = useTaskStore();
   const { openModal } = useModal();
 
+  const [selectedFilter, setSelectedFilter] = useState(""); // State para el filtro
+
   const onSelect = (task) => {
     setActiveTask(task);
   };
@@ -24,14 +26,25 @@ export const TaskMainPage = () => {
     startLoadingTasks();
   }, []);
 
+  // Aplicar el filtro a las tareas
+  const filteredTasks = tasks.filter((task) => {
+    if (selectedFilter === "realizarse") {
+      return task.cardStateClass === "realizarse";
+    } else if (selectedFilter === "porVencer") {
+      return task.cardStateClass === "aPuntoDeVencer";
+    } else if (selectedFilter === "vencida") {
+      return task.cardStateClass === "yaVencidas";
+    }
+    return true;
+  });
+
   return (
     <>
       <HeadDate />
-      <TaskFilter />
-
-      {tasks.length > 0 && (
+      <TaskFilter setSelectedFilter={setSelectedFilter} /> {/* Pasar la función de setSelectedFilter */}
+      {filteredTasks.length > 0 && (
         <div>
-          {tasks.map((task) => (
+          {filteredTasks.map((task) => (
             <TaskCard
               key={task.id}
               task={task}
@@ -41,7 +54,6 @@ export const TaskMainPage = () => {
           ))}
         </div>
       )}
-
       <AddTaskCard />
       <TaskModal />
     </>
