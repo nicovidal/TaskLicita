@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { onLoadTasks, onSetActiveTask } from "../store/task/taskSlice";
+import { onAddNewTask, onLoadTasks, onSetActiveTask, onUpdateTask } from "../store/task/taskSlice";
 import Swal from "sweetalert2";
 import taskApi from "../api/taskApi";
 import { convertTasksToDateTasks } from "../helpers/convertTasksToDateTasks";
@@ -19,10 +19,25 @@ export const useTaskStore=()=>{
     
 
     const startSavingTask=async(taskEvent)=>{
+    
+
+
+
+
+
 
         try{
+          if(tasks._id){
 
 
+            dispatch(onUpdateTask({...taskEvent}))
+          }else{
+
+            const {data}=await taskApi.post('/tasks',taskEvent);
+            console.log({data})
+            dispatch(onAddNewTask({...taskEvent,_id:new Date().getTime()}))
+          }
+          
 
 
 
@@ -63,7 +78,8 @@ export const useTaskStore=()=>{
     
         //metodos
         setActiveTask,
-        startLoadingTasks
+        startLoadingTasks,
+        startSavingTask
         
       };
 

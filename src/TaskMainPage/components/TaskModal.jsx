@@ -7,6 +7,7 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from "date-fns/locale/es";
 import { useModal } from "../../hooks/useModal";
+import { useTaskStore } from "../../hooks/useTaskStore";
 
 registerLocale("es", es);
 
@@ -27,7 +28,7 @@ export const TaskModal = () => {
 
   const {isModalOpen,closeModal} =useModal();
   
-
+  const {startSavingTask}=useTaskStore()
 
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -78,9 +79,9 @@ export const TaskModal = () => {
     }
 
     if (formValues.description.length <= 0) return;
-    console.log(formValues)
+    
 
- /*    await startSavingEvent(formValues); */
+    await startSavingTask(formValues); 
     closeModal();
     setFormSubmitted(false)
 
