@@ -25,34 +25,29 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 export const TaskModal = () => {
+  const { isModalOpen, closeModal } = useModal();
 
-  const {isModalOpen,closeModal} =useModal();
-
-  const {activeTask,startSavingTask}=useTaskStore()
+  const { activeTask, startSavingTask } = useTaskStore();
 
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const [formValues, setFormValues] = useState({
     description: "",
     startDate: new Date(),
-    endDate:'',
+    endDate: "",
   });
 
   const descriptionClass = useMemo(() => {
     if (!formSubmitted) return;
 
     return formValues.description.length > 0 ? "" : "is-invalid";
-
   }, [formValues.description, formSubmitted]);
 
   useEffect(() => {
-    
-    if(activeTask !==null){
-      setFormValues({...activeTask})
+    if (activeTask !== null) {
+      setFormValues({ ...activeTask });
     }
-
-  }, [activeTask])
-  
+  }, [activeTask]);
 
   const onInputChanged = ({ target }) => {
     setFormValues({
@@ -69,7 +64,6 @@ export const TaskModal = () => {
   };
 
   const onCloseModal = () => {
-    console.log("Cerrando modal");
     closeModal();
   };
 
@@ -88,13 +82,10 @@ export const TaskModal = () => {
     }
 
     if (formValues.description.length <= 0) return;
-    
 
-    await startSavingTask(formValues); 
+    await startSavingTask(formValues);
     closeModal();
-    setFormSubmitted(false)
-
-
+    setFormSubmitted(false);
   };
 
   return (

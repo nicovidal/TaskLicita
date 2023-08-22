@@ -11,7 +11,7 @@ export const TaskCard = ({ task, onSelectEvent , onDoubleClickEvent}) => {
   let cardStateClass = '';
   if (endDate < currentDate) {
     cardStateClass = 'yaVencidas';
-  } else if (endDate.getTime() - currentDate.getTime() <= 86400000) { // Menos de 1 día
+  } else if (endDate.getTime() - currentDate.getTime() <= 86400000) { 
     cardStateClass = 'aPuntoDeVencer';
   } else if (endDate.toISOString().split('T')[0] === currentDate.toISOString().split('T')[0]) {
     cardStateClass = 'realizarse';
