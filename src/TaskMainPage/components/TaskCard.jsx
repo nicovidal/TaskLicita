@@ -20,8 +20,11 @@ export const TaskCard = ({ task, onSelectEvent , onDoubleClickEvent}) => {
   const handleDateChange = (event) => {
     // Manejar el cambio de fecha aquí
   };
-
-  const formattedEndDate = new Date(task.endDate).toISOString().split('T')[0];
+  const formattedEndDate = new Date(task.endDate).toLocaleDateString('es-ES', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  });
 
   return (
     <div className={`container ${cardStateClass}`} onClick={() => onSelectEvent(task)} onDoubleClick={()=>onDoubleClickEvent(task)}>
@@ -35,13 +38,13 @@ export const TaskCard = ({ task, onSelectEvent , onDoubleClickEvent}) => {
           <div className='bottom-icons-container'>
             <div className='calendar-icon'>
               <input
-                type='date'
+                disabled
                 id='date'
                 name='date'
                 value={formattedEndDate}
                 onChange={handleDateChange}
               />
-              <FontAwesomeIcon icon={faCalendarDays} size='2x' />
+              <FontAwesomeIcon icon={faCalendarDays} size='2x' className='mx-2' />
             </div>
             <FontAwesomeIcon icon={faCircleCheck} size='2x' />
           </div>

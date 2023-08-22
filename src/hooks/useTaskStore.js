@@ -20,14 +20,22 @@ export const useTaskStore = () => {
 
   const startSavingTask = async (taskEvent) => {
     try {
-      if (tasks._id) {
+      if (taskEvent.id) {
+
+    
+        await taskApi.put(`/tasks/${taskEvent.id}`,taskEvent)
+
         dispatch(onUpdateTask({ ...taskEvent }));
-      } else {
+        return;
+
+      } 
+      
         const { data } = await taskApi.post("/tasks", taskEvent);
 
         dispatch(onAddNewTask({ ...taskEvent, id: data.task.id }));
-      }
+      
     } catch (error) {
+      console.log(error)
       Swal.fire("Error al guardar", error.response.data.msg, "error");
     }
   };

@@ -120,7 +120,7 @@ export const TaskModal = () => {
           <DatePicker
             selected={formValues.startDate}
             onChange={(event) => onDateChanged(event, "startDate")}
-            className="form-control"
+            className="form-control mx-2"
             locale="es"
             dateFormat="P"
           />
@@ -132,7 +132,7 @@ export const TaskModal = () => {
             minDate={formValues.startDate}
             selected={formValues.endDate}
             onChange={(event) => onDateChanged(event, "endDate")}
-            className="form-control"
+            className="form-control mx-2"
             locale="es"
             dateFormat="P"
           />
