@@ -53,8 +53,9 @@ export const useTaskStore=()=>{
         try {
           const { data } = await taskApi.get('/tasks');
           console.log(data)
+          const tasks=convertTasksToDateTasks(data.tasks)
       
-          dispatch(onLoadTasks(data));
+          dispatch(onLoadTasks(tasks));
         } catch (error) {
           console.log('Error cargando eventos');
   

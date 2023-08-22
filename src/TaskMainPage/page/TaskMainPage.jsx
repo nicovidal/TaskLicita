@@ -12,9 +12,6 @@ export const TaskMainPage = () => {
   const { tasks, startLoadingTasks, setActiveTask } = useTaskStore();
   const {openModal}=useModal();
 
-  useEffect(() => {
-    startLoadingTasks();
-  }, []);
 
   const onSelect = (task) => {
     console.log({ click: task });
@@ -27,6 +24,11 @@ export const TaskMainPage = () => {
     console.log('abriendo modal') 
     openModal();
   }
+
+  
+  useEffect(() => {
+    startLoadingTasks();
+  }, []);
 
   return (
     <>

@@ -35,14 +35,14 @@ export const taskSlice = createSlice({
         },
         onLoadTasks: (state, { payload = {} }) => {
             state.isLoadingTasks = false;
-            if (Array.isArray(payload.tasks)) {
-              payload.tasks.forEach(task => {
+         
+              payload.forEach(task => {
                 const exists = state.tasks.some(dbTask => dbTask.id === task.id);
                 if (!exists) {
                   state.tasks.push(task); 
                 }
               });
-            }
+            
           },
           
 
