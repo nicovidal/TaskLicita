@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { onAddNewTask, onLoadTasks, onSetActiveTask, onUpdateTask } from "../store/task/taskSlice";
+import { onAddNewTask,  onLoadTasks, onSetActiveTask, onUpdateTask } from "../store/task/taskSlice";
 import Swal from "sweetalert2";
 import taskApi from "../api/taskApi";
 import { convertTasksToDateTasks } from "../helpers/convertTasksToDateTasks";
@@ -16,7 +16,8 @@ export const useTaskStore=()=>{
     const setActiveTask=(taskEvent)=>{
         dispatch(onSetActiveTask(taskEvent));
     }
-    
+
+
 
     const startSavingTask=async(taskEvent)=>{
     

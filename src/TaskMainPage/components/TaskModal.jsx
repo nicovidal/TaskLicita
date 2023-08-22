@@ -27,9 +27,7 @@ Modal.setAppElement("#root");
 export const TaskModal = () => {
 
   const {isModalOpen,closeModal} =useModal();
- 
 
-  
   const {activeTask,startSavingTask}=useTaskStore()
 
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -37,7 +35,7 @@ export const TaskModal = () => {
   const [formValues, setFormValues] = useState({
     description: "",
     startDate: new Date(),
-    endDate: new Date(),
+    endDate:'',
   });
 
   const descriptionClass = useMemo(() => {
@@ -55,9 +53,6 @@ export const TaskModal = () => {
 
   }, [activeTask])
   
-
-
-
 
   const onInputChanged = ({ target }) => {
     setFormValues({

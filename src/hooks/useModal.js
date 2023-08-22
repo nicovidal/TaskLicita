@@ -6,6 +6,8 @@ export const useModal=()=>{
     const dispatch=useDispatch();
 
     const {isModalOpen}=useSelector(state=>state.modal);
+    
+
 
     const openModal=()=>{
         dispatch(onOpenModal());
