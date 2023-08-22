@@ -5,7 +5,7 @@ import { faCircleCheck, faCalendarDays } from '@fortawesome/free-solid-svg-icons
 
 export const TaskCard = ({ task, onSelectEvent , onDoubleClickEvent}) => {
   
-  const currentDate = new Date();
+  const currentDate = new Date(task.startDate);
   currentDate.setHours(0, 0, 0, 0); 
     
   const endDate = new Date(task.endDate);
@@ -14,15 +14,14 @@ export const TaskCard = ({ task, onSelectEvent , onDoubleClickEvent}) => {
   console.log({ endDate });
   console.log({ currentDate });
   
-  let cardStateClass = '';
+  let cardStateClass = 'aPuntoDeVencer';
+
   
-  const timeDifference = endDate.getTime() - currentDate.getTime();
-  
-  if (timeDifference < 0) {
+  if (currentDate > endDate) {
     cardStateClass = 'yaVencidas';
-  } else if (timeDifference <= 86400000) {
+  } else if (currentDate === endDate) {
     cardStateClass = 'aPuntoDeVencer';
-  } else if (endDate.getTime() === currentDate.getTime()) {
+  } else if (currentDate < endDate) {
     cardStateClass = 'realizarse';
   }
   

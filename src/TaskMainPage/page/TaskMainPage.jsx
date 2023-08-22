@@ -12,7 +12,7 @@ export const TaskMainPage = () => {
   const { tasks, startLoadingTasks, setActiveTask } = useTaskStore();
   const { openModal } = useModal();
 
-  const [selectedFilter, setSelectedFilter] = useState(""); // State para el filtro
+  const [selectedFilter, setSelectedFilter] = useState(""); 
 
   const onSelect = (task) => {
     setActiveTask(task);
