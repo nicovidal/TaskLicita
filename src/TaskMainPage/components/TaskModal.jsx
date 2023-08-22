@@ -27,7 +27,7 @@ Modal.setAppElement("#root");
 export const TaskModal = () => {
   const { isModalOpen, closeModal } = useModal();
 
-  const { activeTask, startSavingTask } = useTaskStore();
+  const { activeTask, startSavingTask,startDeletingTask } = useTaskStore();
 
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -88,6 +88,11 @@ export const TaskModal = () => {
     setFormSubmitted(false);
   };
 
+  const onDelete=async(task)=>{
+    startDeletingTask();
+
+  }
+
   return (
     <Modal
       isOpen={isModalOpen}
@@ -143,6 +148,10 @@ export const TaskModal = () => {
         <button type="submit" className="btn btn-outline-primary btn-block">
           <i className="far fa-save"></i>
           <span> Guardar</span>
+        </button>
+        <button type="submit" className="btn btn-outline-danger btn-block mx-4" onClick={onDelete}>
+          <i className="far fa-save"></i>
+          <span> Borrar</span>
         </button>
       </form>
     </Modal>

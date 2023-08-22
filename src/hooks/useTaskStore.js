@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   onAddNewTask,
+  onDeleteTask,
   onLoadTasks,
   onSetActiveTask,
   onUpdateTask,
@@ -51,6 +52,23 @@ export const useTaskStore = () => {
     }
   };
 
+
+  const startDeletingTask=async()=>{
+
+    try{
+
+      await taskApi.delete(`/tasks/${activeTask.id}`);
+      dispatch(onDeleteTask());
+
+    }catch(error){
+      console.log(error);
+      Swal.fire('Error al eliminar',error.response.data.msg,'error')
+
+
+    }
+     
+  }
+
   return {
     //propertis
     tasks,
@@ -60,5 +78,6 @@ export const useTaskStore = () => {
     setActiveTask,
     startLoadingTasks,
     startSavingTask,
+    startDeletingTask
   };
 };
