@@ -8,5 +8,9 @@ export const store = configureStore({
         modal:modalSlice.reducer,
         task:taskSlice.reducer
  
-    }
+    },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 })

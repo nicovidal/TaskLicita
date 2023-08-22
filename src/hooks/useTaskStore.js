@@ -21,11 +21,6 @@ export const useTaskStore=()=>{
     const startSavingTask=async(taskEvent)=>{
     
 
-
-
-
-
-
         try{
           if(tasks._id){
 
@@ -35,7 +30,7 @@ export const useTaskStore=()=>{
 
             const {data}=await taskApi.post('/tasks',taskEvent);
             console.log({data})
-            dispatch(onAddNewTask({...taskEvent,_id:new Date().getTime()}))
+            dispatch(onAddNewTask({...taskEvent,id:data.task.id}))
           }
           
 

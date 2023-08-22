@@ -3,7 +3,7 @@ import '../styles/AddTask.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
-export const TaskCard = ({ task }) => {
+export const TaskCard = ({ task, onSelectEvent }) => {
   
   const currentDate = new Date();
   const endDate = new Date(task.endDate);
@@ -24,7 +24,7 @@ export const TaskCard = ({ task }) => {
   const formattedEndDate = new Date(task.endDate).toISOString().split('T')[0];
 
   return (
-    <div className={`container ${cardStateClass}`}>
+    <div className={`container ${cardStateClass}`} onClick={() => onSelectEvent(task)}>
       <div key={task.id}>
         <form>
           <h3 className='descriptionText'>{task.description}</h3>
@@ -50,4 +50,3 @@ export const TaskCard = ({ task }) => {
     </div>
   );
 };
-

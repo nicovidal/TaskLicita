@@ -35,7 +35,7 @@ export const TaskModal = () => {
   const [formValues, setFormValues] = useState({
     description: "",
     startDate: new Date(),
-    endDate: "",
+    endDate: new Date(),
   });
 
   const descriptionClass = useMemo(() => {
