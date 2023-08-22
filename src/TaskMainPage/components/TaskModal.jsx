@@ -76,10 +76,7 @@ export const TaskModal = () => {
       formValues.startDate
     );
 
-    if (isNaN(difference) || difference <= 0) {
-      Swal.fire("Fechas incorrectas", "Revisa tus fechas", "error");
-      return;
-    }
+
 
     if (formValues.description.length <= 0) return;
 

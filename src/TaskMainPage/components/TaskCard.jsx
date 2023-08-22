@@ -6,16 +6,27 @@ import { faCircleCheck, faCalendarDays } from '@fortawesome/free-solid-svg-icons
 export const TaskCard = ({ task, onSelectEvent , onDoubleClickEvent}) => {
   
   const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0); 
+    
   const endDate = new Date(task.endDate);
-
+  endDate.setHours(0, 0, 0, 0); 
+  
+  console.log({ endDate });
+  console.log({ currentDate });
+  
   let cardStateClass = '';
-  if (endDate < currentDate) {
+  
+  const timeDifference = endDate.getTime() - currentDate.getTime();
+  
+  if (timeDifference < 0) {
     cardStateClass = 'yaVencidas';
-  } else if (endDate.getTime() - currentDate.getTime() <= 86400000) { 
+  } else if (timeDifference <= 86400000) {
     cardStateClass = 'aPuntoDeVencer';
-  } else if (endDate.toISOString().split('T')[0] === currentDate.toISOString().split('T')[0]) {
+  } else if (endDate.getTime() === currentDate.getTime()) {
     cardStateClass = 'realizarse';
   }
+  
+  
 
   const handleDateChange = (event) => {
     // Manejar el cambio de fecha aquí
