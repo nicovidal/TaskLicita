@@ -30,8 +30,7 @@ export const taskSlice = createSlice({
                 state.tasks=state.tasks.filter(task=>task.id !== state.activeTask.id);
                 state.activeTask=null;
 
-            }
-            
+            }           
         },
         onLoadTasks: (state, { payload = {} }) => {
             state.isLoadingTasks = false;
@@ -42,7 +41,7 @@ export const taskSlice = createSlice({
                 }
               });
             
-          },
+        },
         
           
 

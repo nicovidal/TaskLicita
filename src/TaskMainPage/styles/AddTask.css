@@ -41,27 +41,26 @@
   margin-left: 27rem;
 }
 
-/* Estado: A realizarse */
+
 .realizarse {
-  background-color: #4caf50; /* Color verde */
+  background-color: #4caf50; 
 }
 .realizarse .descriptionText {
-  color: white; /* Color de texto blanco */
+  color: white; 
 }
 
 
-/* Estado: A punto de vencer */
-.aPuntoDeVencer {
-  background-color: #ffc107; /* Color amarillo */
+.porVencer {
+  background-color: #ffc107; 
 }
-.aPuntoDeVencer .descriptionText {
-  color: #333; /* Color de texto oscuro */
+.porVencer .descriptionText {
+  color: #333; 
 }
 
-/* Estado: Ya vencidas */
+
 .yaVencidas {
-  background-color: #ff6b6b; /* Color rojo */
+  background-color: #ff6b6b; 
 }
 .yaVencidas .descriptionText {
-  color: white; /* Color de texto blanco */
+  color: white;
 }
