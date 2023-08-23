@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
-export const TaskFilter = ({ onFilterChange, onClearFilter }) => {
+export const TaskFilter = ({ onFilterChange, onClearFilter, onSortChange }) => {
   const [selectedFilter, setSelectedFilter] = useState('');
 
   const handleFilterChange = (filter) => {
     setSelectedFilter(filter);
     onFilterChange(filter);
-    console.log({filter})
   };
 
   const handleClearFilter = () => {
-    setSelectedFilter(''); 
+    setSelectedFilter('');
     onClearFilter();
+  };
+
+  const handleSortChange = (sort) => {
+    onSortChange(sort);
   };
 
   return (
@@ -52,6 +55,22 @@ export const TaskFilter = ({ onFilterChange, onClearFilter }) => {
               onClick={() => handleFilterChange('vencida')}
             >
               Vencida
+            </button>
+          </li>
+          <li>
+            <button
+              className="dropdown-item"
+              onClick={() => handleSortChange("creationDate")}
+            >
+              Fecha de creación (Por Defecto)
+            </button>
+          </li>
+          <li>
+            <button
+              className="dropdown-item"
+              onClick={() => handleSortChange("dueDate")}
+            >
+              Fecha de vencimiento (Menor a Mayor)
             </button>
           </li>
         </ul>

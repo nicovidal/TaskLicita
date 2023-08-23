@@ -6,14 +6,20 @@ import { AddTaskCard } from "../components/AddTaskCard";
 import { useTaskStore } from "../../hooks/useTaskStore";
 import { TaskModal } from "../components/TaskModal";
 import { useModal } from "../../hooks/useModal";
-import { useFilter } from "../../hooks/useFilter"; 
-
+import { useFilter } from "../../hooks/useFilter";
 
 export const TaskMainPage = () => {
   const { tasks, startLoadingTasks, setActiveTask } = useTaskStore();
   const { openModal } = useModal();
 
-  const { selectedFilter, setSelectedFilter, sortOrder, setSortOrder, filteredAndSortedTasks } = useFilter(tasks);
+  const { setSelectedFilter, setSortOrder, filteredAndSortedTasks } = useFilter(tasks);
+
+  const handleClearFilter = () => {
+    // Implement the logic to clear the filter here
+    // For example, reset selected filter and sorting order
+    setSelectedFilter("");
+    setSortOrder("creationDate"); // Reset to default sorting order
+  };
 
   const onSelect = (task) => {
     setActiveTask(task);
@@ -33,6 +39,7 @@ export const TaskMainPage = () => {
       <TaskFilter
         onFilterChange={setSelectedFilter}
         onSortChange={setSortOrder}
+        onClearFilter={handleClearFilter}
       />
       {filteredAndSortedTasks.length > 0 && (
         <div>
