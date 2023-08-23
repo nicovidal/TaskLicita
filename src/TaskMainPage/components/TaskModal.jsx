@@ -118,13 +118,14 @@ export const TaskModal = () => {
           </small>
         </div>
         <div className="form-group mb-2">
-          <label>Fecha inicio</label>
+          <label>Fecha de hoy</label>
           <DatePicker
             selected={formValues.startDate}
             onChange={(event) => onDateChanged(event, "startDate")}
             className="form-control mx-2"
             locale="es"
             dateFormat="P"
+            disabled
           />
         </div>
 

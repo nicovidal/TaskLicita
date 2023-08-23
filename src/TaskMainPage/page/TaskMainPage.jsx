@@ -21,7 +21,7 @@ export const TaskMainPage = () => {
   };
 
   const onClearFilter = () => {
-    setSelectedFilter(""); // Clear the selected filter
+    setSelectedFilter(""); 
   };
 
   useEffect(() => {

@@ -45,7 +45,6 @@ export const TaskCard = ({ task, onSelectEvent, onDoubleClickEvent }) => {
       <div key={task.id}>
         <form>
           <h3 className="descriptionText">{task.description}</h3>
-          <h3 className="descriptionText">{cardStateClass}</h3>
           <div className="checkbox-box">
             <input type="checkbox" id="checkbox" />
             <label htmlFor="checkbox"></label>
