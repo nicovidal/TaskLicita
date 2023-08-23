@@ -11,17 +11,21 @@ export const TaskCard = ({ task, onSelectEvent, onDoubleClickEvent }) => {
   endDate.setHours(0, 0, 0, 0);
 
   let cardStateClass = "";
+  let estado=''
 
   if (currentDate > endDate) {
     cardStateClass = "yaVencidas";
+    estado = "Vencidas";
   } else if (
     currentDate.getDate() === endDate.getDate() &&
     currentDate.getMonth() === endDate.getMonth() &&
     currentDate.getFullYear() === endDate.getFullYear()
   ) {
     cardStateClass = "porVencer";
+    estado= "Por vencer";
   } else if (currentDate < endDate) {
     cardStateClass = "realizarse";
+    estado = "Realizar";
   }
 
   console.log({ cardStateClass });
@@ -45,6 +49,7 @@ export const TaskCard = ({ task, onSelectEvent, onDoubleClickEvent }) => {
       <div key={task.id}>
         <form>
           <h3 className="descriptionText">{task.description}</h3>
+  {/*         <h3 className="descriptionText">{estado}</h3> */}
           <div className="checkbox-box">
             <input type="checkbox" id="checkbox" />
             <label htmlFor="checkbox"></label>
