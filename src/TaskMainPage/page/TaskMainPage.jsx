@@ -7,6 +7,7 @@ import { useTaskStore } from "../../hooks/useTaskStore";
 import { TaskModal } from "../components/TaskModal";
 import { useModal } from "../../hooks/useModal";
 import { useFilter } from "../../hooks/useFilter";
+import { DateRangePicker } from "../components/DateRangePicker";
 
 
 export const TaskMainPage = () => {
@@ -68,6 +69,7 @@ export const TaskMainPage = () => {
         onChange={(e) => setSearchValue(e.target.value)}
         placeholder="Buscar Tarea"
       />
+      <DateRangePicker />
  
       {filteredAndSortedTasks.length > 0 && (
         <div>
