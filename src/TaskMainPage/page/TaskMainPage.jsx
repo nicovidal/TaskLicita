@@ -9,7 +9,6 @@ import { useModal } from "../../hooks/useModal";
 import { useFilter } from "../../hooks/useFilter";
 import { DateRangePicker } from "../components/DateRangePicker";
 
-
 export const TaskMainPage = () => {
   const { tasks, startLoadingTasks, setActiveTask } = useTaskStore();
   const { openModal } = useModal();
@@ -31,8 +30,17 @@ export const TaskMainPage = () => {
     if (!startDateFilter || !endDateFilter) {
       return true;
     }
-    const taskDate = new Date(task.dueDate);
-    return taskDate >= startDateFilter && taskDate <= endDateFilter;
+    const taskDate = new Date(task.startDate);
+    const taskEndDate= new Date(task.endDate)
+    console.log(taskDate)
+    console.log(taskEndDate)
+    console.log(endDateFilter)
+    return taskDate >= startDateFilter && taskEndDate <= endDateFilter;
+  };
+
+  const handleDateRangeChange = (startDate, endDate) => {
+    setStartDateFilter(new Date(startDate));
+    setEndDateFilter(new Date(endDate));
   };
 
   const handleClearFilter = () => {
@@ -69,7 +77,7 @@ export const TaskMainPage = () => {
         onChange={(e) => setSearchValue(e.target.value)}
         placeholder="Buscar Tarea"
       />
-      <DateRangePicker />
+      <DateRangePicker onDateRangeChange={handleDateRangeChange} />
  
       {filteredAndSortedTasks.length > 0 && (
         <div>

@@ -31,7 +31,7 @@ export const TaskCard = ({ task, onSelectEvent, onDoubleClickEvent }) => {
   console.log({ cardStateClass });
 
   const handleDateChange = (event) => {
-    // Manejar el cambio de fecha aquí
+    
   };
 
   const formattedEndDate = new Date(task.endDate).toLocaleDateString("es-ES", {

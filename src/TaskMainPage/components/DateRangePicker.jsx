@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 export const DateRangePicker = ({ onDateRangeChange }) => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const handleStartDateChange = (event) => {
     setStartDate(event.target.value);
@@ -26,4 +26,3 @@ export const DateRangePicker = ({ onDateRangeChange }) => {
     </div>
   );
 };
-
