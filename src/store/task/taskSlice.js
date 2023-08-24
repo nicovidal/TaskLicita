@@ -19,17 +19,14 @@ export const taskSlice = createSlice({
             state.tasks=state.tasks.map(task=>{
                 if(task.id===payload.id){
                     return payload;
-
                 }
                 return task;
             });
-
         },
         onDeleteTask:(state)=>{
             if(state.activeTask){
                 state.tasks=state.tasks.filter(task=>task.id !== state.activeTask.id);
                 state.activeTask=null;
-
             }           
         },
         onLoadTasks: (state, { payload = {} }) => {
@@ -39,15 +36,9 @@ export const taskSlice = createSlice({
                 if (!exists) {
                   state.tasks.push(task); 
                 }
-              });
-            
-        },
-        
-          
-
+              });      
+        },     
     }
 });
-
-
 
 export const { onSetActiveTask,onAddNewTask , onUpdateTask,onDeleteTask,onLoadTasks } = taskSlice.actions;

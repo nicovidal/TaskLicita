@@ -12,8 +12,7 @@ import { DateRangePicker } from "../components/DateRangePicker";
 export const TaskMainPage = () => {
   const { tasks, startLoadingTasks, setActiveTask } = useTaskStore();
   const { openModal } = useModal();
-  const { setSelectedFilter, setSortOrder, filteredAndSortedTasks } =
-    useFilter(tasks);
+  const { setSelectedFilter, setSortOrder, filteredAndSortedTasks } =useFilter(tasks);
   const [searchValue, setSearchValue] = useState("");
   const [startDateFilter, setStartDateFilter] = useState(null);
   const [endDateFilter, setEndDateFilter] = useState(null);

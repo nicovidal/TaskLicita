@@ -30,9 +30,10 @@ export const TaskCard = ({ task, onSelectEvent, onDoubleClickEvent }) => {
             <label htmlFor="checkbox"></label>
             <h3 className="descriptionText">Tarea {estado}</h3>
           </div>
-
+    
           <div className="bottom-icons-container">
             <div className="calendar-icon">
+            <p className="calendar-message">Vencimiento:</p>
               <input
                 disabled
                 id="date"
@@ -40,12 +41,15 @@ export const TaskCard = ({ task, onSelectEvent, onDoubleClickEvent }) => {
                 value={formattedEndDate}
                 onChange={handleDateChange}
               />
-
+             
               <FontAwesomeIcon
                 icon={faCalendarDays}
                 size="2x"
                 className="mx-2"
               />
+          
+
+              
             </div>
             {circleIcon && <FontAwesomeIcon icon={circleIcon} size="2x" />}
           </div>

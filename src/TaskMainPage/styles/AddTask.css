@@ -1,6 +1,6 @@
 .container {
   border: 1px solid black;
-  margin-top: 40px;
+  margin-top: 20px;
   width: 40%;
   height: 150px;
   transition: background-color 0.3s;
@@ -39,8 +39,17 @@
   display: flex;
   align-items: center;
   margin-right: 20px;
-  margin-left: 27rem;
+  margin-left: 22rem;
 }
+
+
+.calendar-message {
+  font-size: 15px;
+  margin-top: 5px; 
+  margin-right: 5px;
+  text-align: center; 
+}
+
 
 .dataPicker {
   margin-left: 40rem;
@@ -59,7 +68,7 @@
   background-color: #ffc107; 
 }
 .porVencer .descriptionText {
-  color: #333; 
+  color: white; 
 }
 
 
