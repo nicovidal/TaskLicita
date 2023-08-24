@@ -14,7 +14,7 @@ export const AddTaskCard = () => {
     setActiveTask({
       description: "",
       startDate: new Date(),
-      endDate: '',
+      endDate: "",
     });
 
     openModal();

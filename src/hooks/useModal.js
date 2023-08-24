@@ -13,13 +13,11 @@ export const useModal = () => {
     dispatch(onCloseModal());
   };
 
-
   return {
     //properties
     isModalOpen,
     //metodos
     openModal,
     closeModal,
-   
   };
 };

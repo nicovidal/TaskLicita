@@ -22,21 +22,17 @@ export const useTaskStore = () => {
   const startSavingTask = async (taskEvent) => {
     try {
       if (taskEvent.id) {
-
-    
-        await taskApi.put(`/tasks/${taskEvent.id}`,taskEvent)
+        await taskApi.put(`/tasks/${taskEvent.id}`, taskEvent);
 
         dispatch(onUpdateTask({ ...taskEvent }));
         return;
+      }
 
-      } 
-      
-        const { data } = await taskApi.post("/tasks", taskEvent);
+      const { data } = await taskApi.post("/tasks", taskEvent);
 
-        dispatch(onAddNewTask({ ...taskEvent, id: data.task.id }));
-      
+      dispatch(onAddNewTask({ ...taskEvent, id: data.task.id }));
     } catch (error) {
-      console.log(error)
+      console.log(error);
       Swal.fire("Error al guardar", error.response.data.msg, "error");
     }
   };
@@ -52,22 +48,15 @@ export const useTaskStore = () => {
     }
   };
 
-
-  const startDeletingTask=async()=>{
-
-    try{
-
+  const startDeletingTask = async () => {
+    try {
       await taskApi.delete(`/tasks/${activeTask.id}`);
       dispatch(onDeleteTask());
-
-    }catch(error){
+    } catch (error) {
       console.log(error);
-      Swal.fire('Error al eliminar',error.response.data.msg,'error')
-
-
+      Swal.fire("Error al eliminar", error.response.data.msg, "error");
     }
-     
-  }
+  };
 
   return {
     //propertis
@@ -78,6 +67,6 @@ export const useTaskStore = () => {
     setActiveTask,
     startLoadingTasks,
     startSavingTask,
-    startDeletingTask
+    startDeletingTask,
   };
 };

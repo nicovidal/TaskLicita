@@ -12,7 +12,8 @@ import { DateRangePicker } from "../components/DateRangePicker";
 export const TaskMainPage = () => {
   const { tasks, startLoadingTasks, setActiveTask } = useTaskStore();
   const { openModal } = useModal();
-  const { setSelectedFilter, setSortOrder, filteredAndSortedTasks } = useFilter(tasks);
+  const { setSelectedFilter, setSortOrder, filteredAndSortedTasks } =
+    useFilter(tasks);
   const [searchValue, setSearchValue] = useState("");
   const [startDateFilter, setStartDateFilter] = useState(null);
   const [endDateFilter, setEndDateFilter] = useState(null);
@@ -31,10 +32,10 @@ export const TaskMainPage = () => {
       return true;
     }
     const taskDate = new Date(task.startDate);
-    const taskEndDate= new Date(task.endDate)
-    console.log(taskDate)
-    console.log(taskEndDate)
-    console.log(endDateFilter)
+    const taskEndDate = new Date(task.endDate);
+    console.log(taskDate);
+    console.log(taskEndDate);
+    console.log(endDateFilter);
     return taskDate >= startDateFilter && taskEndDate <= endDateFilter;
   };
 
@@ -78,7 +79,7 @@ export const TaskMainPage = () => {
         placeholder="Buscar Tarea"
       />
       <DateRangePicker onDateRangeChange={handleDateRangeChange} />
- 
+
       {filteredAndSortedTasks.length > 0 && (
         <div>
           {filteredAndSortedTasks
