@@ -12,7 +12,7 @@ Currently, two official plugins are available:
 
 - Packages:yarn install
 
-- Arrancar app:yarn dev 
+- iniciar app:yarn dev 
 
 
 
