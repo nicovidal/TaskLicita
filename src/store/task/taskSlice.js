@@ -6,6 +6,7 @@ export const taskSlice = createSlice({
         isLoadingTasks:true,
         tasks:[],
         activeTask:null,
+        toManyActiveCheck:[],
     },
     reducers: {
         onSetActiveTask:(state,{payload})=>{
@@ -37,8 +38,25 @@ export const taskSlice = createSlice({
                   state.tasks.push(task); 
                 }
               });      
-        },     
+        },
+        onSetCheckedTask: (state, { payload }) => {
+            if (payload.isChecked) {
+              state.toManyActiveCheck.push(payload.id);
+            } else {
+              state.toManyActiveCheck = state.toManyActiveCheck.filter(
+                id => id !== payload.id
+              );
+            }
+          },
+      
+          onDeleteToManyTask: (state) => {
+            if(state.toManyActiveCheck){
+                state.tasks = state.tasks.filter(task => task.id !==state.toManyActiveCheck.id);
+                state.toManyActiveCheck = [];
+            }
+     
+          },
     }
 });
 
-export const { onSetActiveTask,onAddNewTask , onUpdateTask,onDeleteTask,onLoadTasks } = taskSlice.actions;
+export const { onSetActiveTask,onAddNewTask , onUpdateTask,onDeleteTask,onLoadTasks ,onDeleteToManyTask,onSetCheckedTask} = taskSlice.actions;

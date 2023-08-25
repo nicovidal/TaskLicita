@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
-export const TaskFilter = ({ onFilterChange, onClearFilter, onSortChange }) => {
+export const TaskFilter = ({
+  onFilterChange,
+  onClearFilter,
+  onSortChange,
+  onDeleteToMany,
+}) => {
   const [selectedFilter, setSelectedFilter] = useState("");
 
   const handleFilterChange = (filter) => {
@@ -25,10 +30,14 @@ export const TaskFilter = ({ onFilterChange, onClearFilter, onSortChange }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: "20px",
       }}
     >
-      <button onClick={handleClearFilter}>Quitar Filtro</button>
+      <button onClick={handleClearFilter} className="btn btn-primary me-4">
+        Quitar Filtro
+      </button>
+      <button onClick={onDeleteToMany} className="btn btn-danger">
+        Liberar seleccionadas
+      </button>
       <div className="dropdown" style={{ marginLeft: "31rem" }}>
         <button
           className="btn btn-light dropdown-toggle"

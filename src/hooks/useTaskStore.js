@@ -2,8 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   onAddNewTask,
   onDeleteTask,
+  onDeleteToManyTask,
   onLoadTasks,
   onSetActiveTask,
+  onSetCheckedTask,
   onUpdateTask,
 } from "../store/task/taskSlice";
 import Swal from "sweetalert2";
@@ -13,10 +15,16 @@ import { convertTasksToDateTasks } from "../helpers/convertTasksToDateTasks";
 export const useTaskStore = () => {
   const dispatch = useDispatch();
 
-  const { tasks, activeTask } = useSelector((state) => state.task);
+  const { tasks, activeTask, toManyActiveCheck } = useSelector(
+    (state) => state.task
+  );
 
   const setActiveTask = (taskEvent) => {
     dispatch(onSetActiveTask(taskEvent));
+  };
+
+  const setActiveCheckedTask = (tasksEvent) => {
+    dispatch(onSetCheckedTask(tasksEvent));
   };
 
   const startSavingTask = async (taskEvent) => {
@@ -32,7 +40,6 @@ export const useTaskStore = () => {
 
       dispatch(onAddNewTask({ ...taskEvent, id: data.task.id }));
     } catch (error) {
-      console.log(error);
       Swal.fire("Error al guardar", error.response.data.msg, "error");
     }
   };
@@ -53,7 +60,16 @@ export const useTaskStore = () => {
       await taskApi.delete(`/tasks/${activeTask.id}`);
       dispatch(onDeleteTask());
     } catch (error) {
-      console.log(error);
+      Swal.fire("Error al eliminar", error.response.data.msg, "error");
+    }
+  };
+
+  const startDeleteToManyTask = async (tasksEvent) => {
+    try {
+      await taskApi.post(`/tasks/delete-multiple`, tasksEvent);
+
+      dispatch(onDeleteToManyTask({ ...tasksEvent, id: tasksEvent.id }));
+    } catch (error) {
       Swal.fire("Error al eliminar", error.response.data.msg, "error");
     }
   };
@@ -62,11 +78,13 @@ export const useTaskStore = () => {
     //propertis
     tasks,
     activeTask,
-
+    toManyActiveCheck,
     //metodos
     setActiveTask,
+    setActiveCheckedTask,
     startLoadingTasks,
     startSavingTask,
     startDeletingTask,
+    startDeleteToManyTask,
   };
 };

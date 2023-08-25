@@ -10,9 +10,9 @@ import { useFilter } from "../../hooks/useFilter";
 import { DateRangePicker } from "../components/DateRangePicker";
 
 export const TaskMainPage = () => {
-  const { tasks, startLoadingTasks, setActiveTask } = useTaskStore();
+  const {tasks,toManyActiveCheck,startLoadingTasks,setActiveTask,startDeleteToManyTask} = useTaskStore();
   const { openModal } = useModal();
-  const { setSelectedFilter, setSortOrder, filteredAndSortedTasks } =useFilter(tasks);
+  const { setSelectedFilter, setSortOrder, filteredAndSortedTasks } = useFilter(tasks);
   const [searchValue, setSearchValue] = useState("");
   const [startDateFilter, setStartDateFilter] = useState(null);
   const [endDateFilter, setEndDateFilter] = useState(null);
@@ -32,9 +32,6 @@ export const TaskMainPage = () => {
     }
     const taskDate = new Date(task.startDate);
     const taskEndDate = new Date(task.endDate);
-    console.log(taskDate);
-    console.log(taskEndDate);
-    console.log(endDateFilter);
     return taskDate >= startDateFilter && taskEndDate <= endDateFilter;
   };
 
@@ -58,6 +55,12 @@ export const TaskMainPage = () => {
     openModal();
   };
 
+  const onDeleteToMany = async () => {
+    const selectedTaskIds = toManyActiveCheck;
+    await startDeleteToManyTask(selectedTaskIds);
+    window.location.reload();
+  };
+
   useEffect(() => {
     startLoadingTasks();
   }, []);
@@ -69,6 +72,7 @@ export const TaskMainPage = () => {
         onFilterChange={setSelectedFilter}
         onSortChange={setSortOrder}
         onClearFilter={handleClearFilter}
+        onDeleteToMany={onDeleteToMany}
       />
       <input
         type="text"
