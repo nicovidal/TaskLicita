@@ -10,8 +10,9 @@ Currently, two official plugins are available:
 
 # Iniciar App
 
-Packages:yarn install
-arrancar app:yarn dev 
+- Packages:yarn install
+
+- Arrancar app:yarn dev 
 
 
 
