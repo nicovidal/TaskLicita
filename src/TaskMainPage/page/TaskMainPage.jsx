@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { HeadDate } from "../components/headDate";
+import { HeadDate } from "../components/HeadDate";
 import { TaskCard } from "../components/TaskCard";
 import { TaskFilter } from "../components/TaskFilter";
 import { AddTaskCard } from "../components/AddTaskCard";
