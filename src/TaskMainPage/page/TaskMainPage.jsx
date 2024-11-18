@@ -79,7 +79,7 @@ export const TaskMainPage = () => {
         className="inputSearch"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
-        placeholder="Buscar Tarea"
+        placeholder="Buscar Tareas"
       />
       <DateRangePicker onDateRangeChange={handleDateRangeChange} />
 
